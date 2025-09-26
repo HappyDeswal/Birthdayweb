@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Chotu!</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a stylish look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Custom styles and animations -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .font-pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+        /* A simple fade-in animation for the content */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        /* Animation delay classes */
+        .delay-200 { animation-delay: 0.2s; opacity: 0; }
+        .delay-400 { animation-delay: 0.4s; opacity: 0; }
+        .delay-600 { animation-delay: 0.6s; opacity: 0; }
+        .delay-800 { animation-delay: 0.8s; opacity: 0; }
+
+        /* Styles for the hidden surprise section */
+        #surprise-section {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 1s ease-in-out, opacity 1s ease-in-out, margin-top 1s ease-in-out;
+            margin-top: 0;
+        }
+        #surprise-section.visible {
+            max-height: 1000px; /* Large enough to not clip content */
+            opacity: 1;
+            margin-top: 2.5rem; /* Equivalent to mt-10 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-300 min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-2xl bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl text-center p-6 sm:p-10 transform transition-all duration-500 hover:scale-105">
+        <!-- Main Heading -->
+        <h1 class="font-pacifico text-5xl sm:text-7xl text-pink-500 drop-shadow-lg fade-in">
+            Happy Birthday, Chotu!
+        </h1>
+        
+        <!-- Updated Heartfelt Message -->
+        <p class="text-gray-700 mt-6 text-lg sm:text-xl leading-relaxed fade-in delay-200">
+            To my dearest friend, my amazing classmate, and the sister I chose. I'm so lucky to have found all of this in one amazing person! Having you in my life makes every day brighter and more fun!
+        </p>
+
+        <p class="text-gray-700 mt-4 text-lg sm:text-xl leading-relaxed fade-in delay-400">
+            May your year ahead be filled with amazing adventures, beautiful moments, and all your dreams coming true. Keep being the awesome person you are!
+        </p>
+
+        <!-- Surprise Button -->
+        <div class="mt-8 fade-in delay-600">
+            <button id="surprise-button" class="bg-pink-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-pink-600 transform hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-pink-300">
+                Click for surprise! 🎁
+            </button>
+        </div>
+
+        <!-- Hidden Surprise Section -->
+        <div id="surprise-section">
+            <div class="grid grid-cols-3 gap-4">
+                <!-- Image 1: Add your image URL in the src="" attribute below. -->
+                <img src="https://drive.google.com/file/d/1DtV0109XwrwBv-qOhSiU0NV96Kn7LBn-/view?usp=drive_link" alt="Memory 1" class="rounded-2xl shadow-lg transform hover:scale-110 transition-transform duration-300">
+                
+                <!-- Image 2: Add your image URL in the src="" attribute below. -->
+                <img src="https://drive.google.com/file/d/1aMBliO01BaqYsSJg3fu63KcpEAGs9vxt/view?usp=drive_link" alt="Memory 2" class="rounded-2xl shadow-lg transform hover:scale-110 transition-transform duration-300">
+                
+                <!-- Image 3: Add your image URL in the src="" attribute below. -->
+                <img src="https://drive.google.com/file/d/1IMonvb_gPQo4Ke7N5c56SZsc5qAa4z_I/view?usp=drive_link" alt="Memory 2" class="rounded-2xl shadow-lg transform hover:scale-110 transition-transform duration-300">
+                
+                <!-- Image 4: Add your image URL in the src="" attribute below. -->
+                <img src="https://drive.google.com/file/d/1L_yrBkUwCaOghhZpaW0FGq5c67-fRxIF/view?usp=drive_link" alt="Memory 3" class="rounded-2xl shadow-lg transform hover:scale-110 transition-transform duration-300">
+            </div>
+        </div>
+        
+        <!-- Closing -->
+        <p class="font-pacifico text-3xl text-purple-600 mt-10 drop-shadow-sm fade-in delay-800">
+            With tons of love,
+        </p>
+        <p class="text-gray-600 text-xl font-bold fade-in delay-800">
+            Your friend who's like family
+        </p>
+    </div>
+
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script>
+        // Get the button and the surprise section
+        const surpriseBtn = document.getElementById('surprise-button');
+        const surpriseSection = document.getElementById('surprise-section');
+
+        // Add a click event listener to the button
+        surpriseBtn.addEventListener('click', () => {
+            
+            // --- New attractive action: A firework of hearts! ---
+            const duration = 2 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+                // since particles fall down, start a bit higher than random
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#f472b6', '#c084fc', '#ffffff'] }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#f472b6', '#c084fc', '#ffffff'] }));
+            }, 250);
+            
+            // --- Reveal the hidden memory gallery ---
+            surpriseSection.classList.add('visible');
+
+            // --- Disable the button and change its text ---
+            surpriseBtn.textContent = 'Hope you love it! ❤️';
+            surpriseBtn.disabled = true;
+            surpriseBtn.classList.remove('hover:bg-pink-600', 'hover:scale-110');
+            surpriseBtn.classList.add('bg-pink-400');
+        });
+    </script>
+</body>
+</html>
+
+
+
